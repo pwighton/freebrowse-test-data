@@ -1,0 +1,17 @@
+{
+  "title": "Rates of cerebral protein synthesis and memory formation during sleep v1.0.0 - sub-SM35 (FreeSurfer Derivatives)",
+  "imageOptionsArray": [
+    {
+      "name": "orig.mgz",
+      "url": "https://s3.amazonaws.com/openneuro.org/ds004731/derivatives/freesurfer/sub-SM35/mri/orig.mgz",
+      "colormap": "gray",
+      "opacity": 1.0
+    },
+    {
+      "name": "aseg.mgz",
+      "url": "https://s3.amazonaws.com/openneuro.org/ds004731/derivatives/freesurfer/sub-SM35/mri/aseg.mgz",
+      "colormap": "freesurfer",
+      "opacity": 0.7
+    }
+  ]
+}
