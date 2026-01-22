@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>FreeSurfer Colormap Test</title>
+</head>
+<body>
+  <h1>FreeSurfer Colormap Test</h1>
+  <div id="output"></div>
+
+  <script type="module">
+    import { Niivue, cmapper } from '/node_modules/@niivue/niivue/dist/index.js';
+
+    try {
+      // Try to get the freesurfer colormap LUT using cmapper
+      const lut = cmapper.colormap('freesurfer', false);
+
+      // Check what color is at index 2
+      const index = 2;
+      const offset = index * 4;
+      const r = lut[offset];
+      const g = lut[offset + 1];
+      const b = lut[offset + 2];
+      const a = lut[offset + 3];
+
+      let output = `
+        <p><strong>FreeSurfer colormap at voxel value 2:</strong></p>
+        <p>RGBA: [${r}, ${g}, ${b}, ${a}]</p>
+        <div style="width: 100px; height: 100px; background-color: rgb(${r}, ${g}, ${b}); border: 1px solid black;"></div>
+
+        <h2>First 10 voxel values:</h2>
+      `;
+
+      for (let i = 0; i < 10; i++) {
+        const off = i * 4;
+        output += `<p>Value ${i}: RGB[${lut[off]}, ${lut[off+1]}, ${lut[off+2]}] <span style="display:inline-block; width:20px; height:20px; background-color:rgb(${lut[off]}, ${lut[off+1]}, ${lut[off+2]}); border:1px solid black; vertical-align:middle;"></span></p>`;
+      }
+
+      document.getElementById('output').innerHTML = output;
+    } catch (error) {
+      document.getElementById('output').innerHTML = `
+        <p style="color: red;">Error: ${error.message}</p>
+        <p>Stack: ${error.stack}</p>
+      `;
+    }
+  </script>
+</body>
+</html>

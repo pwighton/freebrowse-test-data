@@ -1,0 +1,247 @@
+
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width,initial-scale=1.0" />
+    <title>Niivue Document</title>
+    <link rel="stylesheet" href="https://niivue.com/demos/features/light.css" />
+    <style>
+      .preview-image {
+        max-height: 50px;
+        max-width: 150px;
+        padding-right: 5px;
+        padding-bottom: 5px;
+      }
+    </style>
+  </head>
+
+  <body style="font-family: sans-serif">
+    <noscript>
+      <strong
+        >niivue doesn't work properly without JavaScript enabled. Please enable
+        it to continue.</strong
+      >
+    </noscript>
+    <header>
+      <div class="dropdown">
+        <button class="dropbtn">
+          File
+          <i class="fa fa-caret-down"></i>
+        </button>
+        <div class="dropdown-content">
+          <a class="viewBtn" id="SaveDocument">Save Document</a>
+          <a class="viewBtn divider" id="Recent">Recent</a>
+          <ul id="previewImages" style="list-style-type: none"></ul>
+          <a class="linker divider" href="https://github.com/niivue/niivue"
+            >About</a
+          >
+        </div>
+      </div>
+      <div class="dropdown">
+        <button class="dropbtn">
+          Download niivue documents
+          <i class="fa fa-caret-down"></i>
+        </button>
+        <div class="dropdown-content" id="downloadLinks">
+          <!-- Links will be added dynamically -->
+        </div>
+      </div>
+      <button class="dropbtn" id="uploadDocument">Upload Niivue Document</button>
+      <label style="margin-left: 10px;">
+        <input type="checkbox" id="noLoadDocument" />
+        don't use loadDocument()
+      </label>
+      <button class="dropbtn" id="remove0thVolume" style="margin-left: 10px;">remove 0th volume</button>
+      <input type="file" id="fileInput" accept=".nvd,.json" style="display: none;">
+    </header>
+    <!-- demo 1 -->
+    <main>
+      <div id="demo1" style="display:flex; flex: 1;">
+        <canvas id="gl1" style="width: 800px; height: 400px"> </canvas>
+      </div>
+    </main>
+
+    <script type="module">
+      import * as niivue from "https://niivue.com/demos/dist/index.js";
+
+      function toggleHippo() {
+        let buttonElem = document.getElementById("toggleHippoButton");
+        if (isHippoShowing) {
+          nv1.removeVolumeByUrl(url);
+          buttonElem.innerText = "Add Hippocampus";
+          isHippoShowing = false;
+        } else {
+          nv1.addVolumeFromUrl({ url, colormap: "bluegrn" });
+          buttonElem.innerText = "Remove Hippocampus";
+          isHippoShowing = true;
+        }
+      }
+
+      function loadDocument(index) {
+        nv1.loadDocument(documents[index]);
+      }
+
+      /**
+       * @param {String} HTML representing a single element
+       * @return {Element}
+       */
+      function htmlToElement(html) {
+        var template = document.createElement("template");
+        html = html.trim(); // Never return a text node of whitespace as the result
+        template.innerHTML = html;
+        return template.content.firstChild;
+      }
+
+      function addPreview(doc) {
+        var ul = document.getElementById("previewImages");
+        var liHTML = `<li><img class="preview-image" onclick="loadDocument(${
+          documents.length - 1
+        })" src="${doc.previewImageDataURL}"/></li>`;
+        var liElem = htmlToElement(liHTML);
+        ul.appendChild(liElem);
+      }
+
+      function populateDownloadLinks() {
+        var downloadContainer = document.getElementById("downloadLinks");
+        documentUrls.forEach((url, index) => {
+          var filename = url.split('/').pop(); // Extract filename from URL
+          var linkHTML = `<a href="${url}" download="${filename}">${filename}</a>`;
+          var linkElem = htmlToElement(linkHTML);
+          downloadContainer.appendChild(linkElem);
+        });
+      }
+
+      async function handleFileUpload(event) {
+        const file = event.target.files[0];
+        const noLoadDocument = document.getElementById("noLoadDocument").checked;
+
+        if (file) {
+          try {
+            const text = await file.text();
+            const jsonData = JSON.parse(text);
+            console.log("handleFileUpload() -- jsonData: ", jsonData)
+            const doc = await niivue.NVDocument.loadFromJSON(jsonData);
+            console.log("handleFileUpload() -- doc before fetchLinkedData(): ", jsonData)
+            await doc.fetchLinkedData()
+            console.log("handleFileUpload() -- doc after fetchLinkedData(): ", jsonData)
+
+            if (noLoadDocument) {
+              console.log("handleFileUpload() -- Loading without loadDocument()...");
+              console.log("handleFileUpload(): nv1", nv1)
+              // Clear existing state
+              while (nv1.volumes.length > 0) {
+                nv1.removeVolumeByIndex(0);
+              }
+              while (nv1.meshes && nv1.meshes.length > 0) {
+                nv1.removeMesh(nv1.meshes[0]);
+              }
+
+              // Handle encoded image blobs if present
+              if (jsonData.encodedImageBlobs && jsonData.encodedImageBlobs.length > 0) {
+                console.log("Loading encoded image blobs:", jsonData.encodedImageBlobs.length)
+                for (let i = 0; i < jsonData.encodedImageBlobs.length; i++) {
+                  const blob = jsonData.encodedImageBlobs[i]
+                  if (blob) {
+                    try {
+                      const imageOptions = jsonData.imageOptionsArray?.[i] || {}
+                      const nvimage = await niivue.NVImage.loadFromBase64({
+                        base64: blob,
+                        ...imageOptions
+                      })
+                      nv1.addVolume(nvimage)
+                      console.log(`Loaded encoded image blob ${i + 1}/${jsonData.encodedImageBlobs.length}`)
+                    } catch (error) {
+                      console.error(`Failed to load encoded image blob ${i}:`, error)
+                    }
+                  }
+                }
+              }
+              // Apply scene options if present
+              nv1.setDefaults();
+              if (jsonData.opts) {
+                console.log("Applying options:", jsonData.opts);
+                nv1.setDefaults(jsonData.opts);
+              }
+
+            } else {
+              console.log("handleFileUpload() -- Loading using loadDocument()...");
+                await nv1.loadDocument(doc);
+              console.log("handleFileUpload() -- Document loaded successfully from uploaded file");
+            }
+          } catch (error) {
+            console.error("Error loading uploaded document:", error);
+            alert("Error loading the document. Please make sure it's a valid NiiVue document file.");
+          }
+        }
+        // Clear the input so the same file can be selected again
+        event.target.value = '';
+      }
+
+      async function onButtonClick(event) {
+        switch (event.target.id) {
+          case "SaveDocument":
+            nv1.saveDocument("niivue.basic.nvd");
+            break;
+          case "uploadDocument":
+            document.getElementById("fileInput").click();
+            break;
+          case "remove0thVolume":
+            nv1.removeVolumeByIndex(0);
+            break;
+        }
+      }
+
+      //const url = "https://niivue.com/demos/images/hippo.nii.gz";
+      //var isHippoShowing = false;
+      
+      var nv1 = new niivue.Niivue();
+      await nv1.attachTo("gl1");
+      console.log(`Using niivue version ${nv1.version}`)
+      
+      //var buttons = document.getElementsByClassName("viewBtn");
+      //for (let i = 0; i < buttons.length; i++)
+      //  buttons[i].addEventListener("click", onButtonClick, false);
+
+      // Add event listener for upload button
+      document.getElementById("uploadDocument").addEventListener("click", onButtonClick, false);
+
+      // Add event listener for remove 0th volume button
+      document.getElementById("remove0thVolume").addEventListener("click", onButtonClick, false);
+
+      // Add event listener for file input
+      document.getElementById("fileInput").addEventListener("change", handleFileUpload, false);
+
+      var documents = [];
+
+      var documentUrls = [
+        "https://niivue.com/demos/images/niivue.basic.nvd",
+        "https://niivue.com/demos/images/niivue.drawing.nvd",
+        "https://niivue.com/demos/images/niivue.mesh.nvd",
+      ];
+
+      // Populate download links
+      populateDownloadLinks();
+
+      var docsLoadedCount = 0;
+      for (const documentUrl of documentUrls) {
+        console.log("loading " + documentUrl);
+
+        niivue.NVDocument.loadFromUrl(documentUrl).then((doc) => {
+          documents.push(doc);
+          console.log("adding preview");
+          console.log(doc.opts);
+          addPreview(doc);
+          // if this is our first document load it into niivue
+          //if(!docsLoadedCount) {
+          //  nv1.loadDocument(doc);
+          //}
+          docsLoadedCount++;
+        });
+
+      }
+      window.loadDocument = loadDocument;
+    </script>
+  </body>
+</html>

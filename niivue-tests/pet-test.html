@@ -1,0 +1,76 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width,initial-scale=1.0" />
+    <title>Basic Multiplanar</title>
+    <link rel="stylesheet" href="https://niivue.com/demos/features/light.css" />
+  </head>
+  <body>
+    <noscript>
+      <strong>niivue requires JavaScript.</strong>
+    </noscript>
+    <header>
+      <select id="sliceType">
+        <option value="0">Axial</option>
+        <option value="1">Coronal</option>
+        <option value="2">Sagittal</option>
+        <option value="4">Render</option>
+        <option value="3" selected>A+C+S+R</option>
+      </select>
+      <button id="toggleOrientation">Hide Orientation Text</button>
+    </header>
+    <main id="container">
+      <canvas id="gl1"></canvas>
+    </main>
+    <footer id="intensity">&nbsp;</footer>
+  </body>
+</html>
+<!-- <script type="module" async></script> -->
+<script type="module" async>
+  import * as niivue from 'https://niivue.com/demos/dist/index.js'
+  var drop = document.getElementById('sliceType')
+  drop.onchange = function () {
+    let st = parseInt(document.getElementById('sliceType').value)
+    nv1.setSliceType(st)
+  }
+  function handleIntensityChange(data) {
+    document.getElementById('intensity').innerHTML = '&nbsp;&nbsp;' + data.string
+    console.log(data)
+  }
+  var volumeList1 = [
+    {
+      url: 'https://pwighton.github.io/freebrowse-test-data/pet/sub-PS11_ses-baselinebrain_space-mni305_pvc-nopvc_desc-preproc_pet.nii.gz',
+      colormap: 'nih',
+      visible: true,
+      opacity: 1
+    }
+  ]
+  var nv1 = new niivue.Niivue({
+    dragAndDropEnabled: true,
+    onLocationChange: handleIntensityChange
+  })
+  await nv1.attachTo('gl1')
+  await nv1.loadVolumes(volumeList1)
+  // Log the max voxel value across all frames
+  const vol = nv1.volumes[0]
+  let maxVal = Number.NEGATIVE_INFINITY
+  for (let i = 0; i < vol.img.length; i++) {
+    if (vol.img[i] > maxVal) maxVal = vol.img[i]
+  }
+  const slope = vol.hdr.scl_slope || 1
+  const inter = vol.hdr.scl_inter || 0
+  console.log('Max voxel value (scaled):', slope * maxVal + inter)
+  console.log('global_max from NiiVue:', vol.global_max)
+  nv1.setSliceType(nv1.sliceTypeMultiplanar)
+  let orientationVisible = true
+  nv1.setIsOrientationTextVisible(orientationVisible)
+  const toggleBtn = document.getElementById('toggleOrientation')
+  toggleBtn.addEventListener('click', () => {
+    orientationVisible = !orientationVisible
+    nv1.setIsOrientationTextVisible(orientationVisible)
+    toggleBtn.textContent = orientationVisible ? 'Hide Orientation Text' : 'Show Orientation Text'
+  })
+</script>
+
