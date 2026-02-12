@@ -1,0 +1,23 @@
+{
+  "title": "t2 fl2d tra demo artifact test",
+  "imageOptionsArray": [
+    {
+      "name": "016_t2_fl2d_tra_hemo_ARIA--nm-npt_ptone20260202.nii.gz",
+      "url": "https://raw.githubusercontent.com/pwighton/freebrowse-test-data/refs/heads/main/ptone/ptone20260202/016_t2_fl2d_tra_hemo_ARIA--nm-npt_ptone20260202.nii.gz",
+      "colormap": "gray",
+      "opacity": 1.0
+    },
+    {
+      "name": "024_t2_fl2d_tra_hemo_ARIA--nm-pt_ptone20260202.nii.gz",
+      "url": "https://raw.githubusercontent.com/pwighton/freebrowse-test-data/refs/heads/main/ptone/ptone20260202/024_t2_fl2d_tra_hemo_ARIA--nm-pt_ptone20260202.nii.gz",
+      "colormap": "gray",
+      "opacity": 1.0
+    },
+    {
+      "name": "016-024-diff--t2_fl2d_tra_hemo_ARIA.nii.gz",
+      "url": "https://raw.githubusercontent.com/pwighton/freebrowse-test-data/refs/heads/main/ptone/ptone20260202/016-024-diff--t2_fl2d_tra_hemo_ARIA.nii.gz",
+      "colormap": "gray",
+      "opacity": 0
+    }
+  ]
+}

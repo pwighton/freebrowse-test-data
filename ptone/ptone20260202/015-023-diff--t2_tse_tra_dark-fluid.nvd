@@ -1,0 +1,23 @@
+{
+  "title": "t2 tse tra dark fluid artifact test",
+  "imageOptionsArray": [
+    {
+      "name": "015_t2_tse_tra_dark-fluid_ARIA--nm-npt_ptone20260202.nii.gz",
+      "url": "https://raw.githubusercontent.com/pwighton/freebrowse-test-data/refs/heads/main/ptone/ptone20260202/015_t2_tse_tra_dark-fluid_ARIA--nm-npt_ptone20260202.nii.gz",
+      "colormap": "gray",
+      "opacity": 1.0
+    },
+    {
+      "name": "023_t2_tse_tra_dark-fluid_ARIA--nm-pt_ptone20260202.nii.gz",
+      "url": "https://raw.githubusercontent.com/pwighton/freebrowse-test-data/refs/heads/main/ptone/ptone20260202/023_t2_tse_tra_dark-fluid_ARIA--nm-pt_ptone20260202.nii.gz",
+      "colormap": "gray",
+      "opacity": 1.0
+    },
+    {
+      "name": "015-023-diff--t2_tse_tra_dark-fluid.nii.gz",
+      "url": "https://raw.githubusercontent.com/pwighton/freebrowse-test-data/refs/heads/main/ptone/ptone20260202/015-023-diff--t2_tse_tra_dark-fluid.nii.gz",
+      "colormap": "gray",
+      "opacity": 0
+    }
+  ]
+}
