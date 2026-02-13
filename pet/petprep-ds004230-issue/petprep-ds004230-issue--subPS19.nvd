@@ -1,0 +1,25 @@
+{
+  "title": "petprep-ds004230-issue",
+  "imageOptionsArray": [
+    {
+      "name": "tpl-MNI152NLin2009cAsym_res-02_T1w.nii.gz",
+      "url": "https://raw.githubusercontent.com/pwighton/freebrowse-test-data/refs/heads/main/pet/petprep-ds004230-issue/tpl-MNI152NLin2009cAsym_res-02_T1w.nii.gz",
+      "colormap": "gray",
+      "opacity": 1.0
+    },
+    {
+      "name": "sub-PS19_ses-rescan_space-MNI152NLin2009cAsym_petref.nii.gz",
+      "url": "https://raw.githubusercontent.com/pwighton/freebrowse-test-data/refs/heads/main/pet/petprep-ds004230-issue/sub-PS19_ses-rescan_space-MNI152NLin2009cAsym_petref.nii.gz",
+      "colormap": "gray",
+      "opacity": 0.0
+    },
+    {
+      "name": "sub-PS19_ses-baseline_space-MNI152NLin2009cAsym_desc-preproc_frame-06_pet.nii.gz",
+      "url": "https://raw.githubusercontent.com/pwighton/freebrowse-test-data/refs/heads/main/pet/petprep-ds004230-issue/sub-PS19_ses-baseline_space-MNI152NLin2009cAsym_desc-preproc_frame-06_pet.nii.gz",
+      "colormap": "nih",
+      "opacity": 0.5,
+      "cal_min": 3000,
+      "cal_max": 42000
+    }
+  ]
+}
