@@ -1,0 +1,15 @@
+{
+  "title": "hippo local",
+  "imageOptionsArray": [
+    {
+      "url": "https://raw.githubusercontent.com/pwighton/freebrowse-test-data/main/pet/sub-PS11_ses-baselinebrain_space-mni305_pvc-nopvc_desc-preproc_pet.nii.gz",
+      "name": "sub-PS11_ses-baselinebrain_space-mni305_pvc-nopvc_desc-preproc_pet.nii.gz",
+      "colormap": "nih",
+      "visible": true,
+      "opacity": 1,
+      "frame4D": 4,
+      "cal_min": 0.0,
+      "cal_max": 60000.0
+    }
+  ]
+}
