@@ -1,0 +1,14 @@
+{
+  "title": "radiological convention test",
+  "imageOptionsArray": [
+    {
+      "url": "https://raw.githubusercontent.com/pwighton/freebrowse-test-data/main/freesurfer/orig.nii.gz",
+      "name": "orig.nii.gz",
+      "colormap": "gray",
+      "visible": true
+    }
+  ],
+  "opts": {
+    "isRadiologicalConvention": true
+  }
+}
