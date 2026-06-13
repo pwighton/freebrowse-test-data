@@ -12,6 +12,8 @@ openneuro-nvd \
   --parallel 4
 ```
 
-[Bookmarklet Test](javascript:(()=>{for(const l of document.links){const h=l.href;if(h.endsWith('.nii.gz')||h.endsWith('.nii')||h.endsWith('.mgz')){l.style.color='#5599dd';l.href='https://freesurfer.github.io/freebrowse/?vol='+encodeURIComponent(h);}else if(h.endsWith('.nvd')){l.style.color='#5599dd';l.href='https://freesurfer.github.io/freebrowse/?nvd='+encodeURIComponent(h);}}})();)
+Open these NiiVue documents in FreeBrowse:
+
+- [sub-0089.nvd](https://freesurfer.github.io/freebrowse/?nvd=https://raw.githubusercontent.com/pwighton/freebrowse-test-data/refs/heads/main/openneuro/ds002785/sub-0089.nvd)
 
 
