@@ -43,7 +43,7 @@
     {
       "url": "https://niivue.com/demos/images/fs/wm.mgz",
       "name": "wm.mgz",
-      "colormap": "Freesurfer",
+      "colormap": "Copper",
       "opacity": 0.7
     }
   ],
