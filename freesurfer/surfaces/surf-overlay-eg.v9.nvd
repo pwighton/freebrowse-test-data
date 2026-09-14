@@ -1,0 +1,59 @@
+{
+  "version": 9,
+  "created": "2026-09-14T20:33:35.131627+00:00",
+  "scene": {
+    "azimuth": 110,
+    "elevation": 10,
+    "scaleMultiplier": 1.0,
+    "gamma": 1.0,
+    "crosshairPos": [
+      0.5,
+      0.5,
+      0.5
+    ],
+    "pan2Dxyzmm": [
+      0,
+      0,
+      0,
+      1
+    ],
+    "backgroundColor": [
+      0,
+      0,
+      0,
+      1
+    ],
+    "clipPlaneColor": [
+      0.7,
+      0,
+      0.7,
+      0.4
+    ],
+    "isClipPlaneCutaway": false
+  },
+  "layout": {},
+  "clipPlanes": [],
+  "volumes": [],
+  "meshes": [
+    {
+      "url": "https://raw.githubusercontent.com/pwighton/freebrowse-test-data/main/freesurfer/surfaces/lh.white",
+      "name": "lh.white",
+      "color": [
+        1.0,
+        1.0,
+        1.0,
+        1.0
+      ],
+      "shaderType": "matte",
+      "layers": [
+        {
+          "url": "https://raw.githubusercontent.com/pwighton/freebrowse-test-data/main/freesurfer/surfaces/lh.curv",
+          "colormap": "Nih",
+          "calMin": -0.75,
+          "calMax": 0.75,
+          "opacity": 1.0
+        }
+      ]
+    }
+  ]
+}

@@ -1,0 +1,74 @@
+{
+  "version": 9,
+  "created": "2026-09-14T20:33:35.131392+00:00",
+  "scene": {
+    "azimuth": 110,
+    "elevation": 10,
+    "scaleMultiplier": 1.0,
+    "gamma": 1.0,
+    "crosshairPos": [
+      0.5,
+      0.5,
+      0.5
+    ],
+    "pan2Dxyzmm": [
+      0,
+      0,
+      0,
+      1
+    ],
+    "backgroundColor": [
+      0,
+      0,
+      0,
+      1
+    ],
+    "clipPlaneColor": [
+      0.7,
+      0,
+      0.7,
+      0.4
+    ],
+    "isClipPlaneCutaway": false
+  },
+  "layout": {},
+  "clipPlanes": [],
+  "volumes": [
+    {
+      "url": "https://niivue.com/demos/images/fs/brainmask.mgz",
+      "name": "brainmask.mgz",
+      "colormap": "Gray",
+      "opacity": 0.0
+    },
+    {
+      "url": "https://niivue.com/demos/images/fs/wm.mgz",
+      "name": "wm.mgz",
+      "colormap": "Copper",
+      "opacity": 0.0
+    }
+  ],
+  "meshes": [
+    {
+      "url": "https://niivue.com/demos/images/fs/lh.white",
+      "name": "lh.white",
+      "color": [
+        1.0,
+        1.0,
+        0.0,
+        1.0
+      ],
+      "shaderType": "crosscut"
+    },
+    {
+      "url": "https://niivue.com/demos/images/fs/rh.white",
+      "name": "rh.white",
+      "color": [
+        1.0,
+        1.0,
+        0.0,
+        1.0
+      ],
+      "shaderType": "crosscut"
+    }
+  ]
+}

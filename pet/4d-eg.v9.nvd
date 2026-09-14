@@ -1,0 +1,47 @@
+{
+  "version": 9,
+  "created": "2026-09-14T20:33:35.132001+00:00",
+  "scene": {
+    "azimuth": 110,
+    "elevation": 10,
+    "scaleMultiplier": 1.0,
+    "gamma": 1.0,
+    "crosshairPos": [
+      0.5,
+      0.5,
+      0.5
+    ],
+    "pan2Dxyzmm": [
+      0,
+      0,
+      0,
+      1
+    ],
+    "backgroundColor": [
+      0,
+      0,
+      0,
+      1
+    ],
+    "clipPlaneColor": [
+      0.7,
+      0,
+      0.7,
+      0.4
+    ],
+    "isClipPlaneCutaway": false
+  },
+  "layout": {},
+  "clipPlanes": [],
+  "volumes": [
+    {
+      "url": "https://raw.githubusercontent.com/pwighton/freebrowse-test-data/main/pet/sub-PS11_ses-baselinebrain_space-mni305_pvc-nopvc_desc-preproc_pet.nii.gz",
+      "name": "sub-PS11_ses-baselinebrain_space-mni305_pvc-nopvc_desc-preproc_pet.nii.gz",
+      "colormap": "Nih",
+      "opacity": 1,
+      "calMin": 0.0,
+      "calMax": 60000.0
+    }
+  ],
+  "meshes": []
+}

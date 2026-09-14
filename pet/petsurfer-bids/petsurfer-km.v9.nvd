@@ -1,0 +1,55 @@
+{
+  "version": 9,
+  "created": "2026-09-14T20:33:35.132182+00:00",
+  "scene": {
+    "azimuth": 110,
+    "elevation": 10,
+    "scaleMultiplier": 1.0,
+    "gamma": 1.0,
+    "crosshairPos": [
+      0.5,
+      0.5,
+      0.5
+    ],
+    "pan2Dxyzmm": [
+      0,
+      0,
+      0,
+      1
+    ],
+    "backgroundColor": [
+      0,
+      0,
+      0,
+      1
+    ],
+    "clipPlaneColor": [
+      0.7,
+      0,
+      0.7,
+      0.4
+    ],
+    "isClipPlaneCutaway": false
+  },
+  "layout": {},
+  "clipPlanes": [],
+  "volumes": [
+    {
+      "url": "https://raw.githubusercontent.com/pwighton/freebrowse-test-data/refs/heads/main/pet/petsurfer-bids/tpl-MNI152NLin2009cAsym_res-01_T1w.nii.gz",
+      "name": "tpl-MNI152NLin2009cAsym_res-01_T1w.nii.gz",
+      "colormap": "Gray",
+      "opacity": 1,
+      "calMin": 2000,
+      "calMax": 8500
+    },
+    {
+      "url": "https://raw.githubusercontent.com/pwighton/freebrowse-test-data/refs/heads/main/pet/petsurfer-bids/sub-PS11_ses-baseline_trc-11CPS13_space-MNI152NLin2009cAsym_desc-sm6_model-Logan_meas-VT_mimap.nii.gz",
+      "name": "sub-PS11_ses-baseline_trc-11CPS13_space-MNI152NLin2009cAsym_desc-sm6_model-Logan_meas-VT_mimap.nii.gz",
+      "colormap": "Nih",
+      "opacity": 0.5,
+      "calMin": 0.0,
+      "calMax": 2.6
+    }
+  ],
+  "meshes": []
+}
