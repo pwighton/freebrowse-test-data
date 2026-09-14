@@ -31,7 +31,10 @@
     ],
     "isClipPlaneCutaway": false
   },
-  "layout": {},
+  "layout": {
+    "sliceType": 4,
+    "showRender": 1
+  },
   "clipPlanes": [],
   "volumes": [],
   "meshes": [
