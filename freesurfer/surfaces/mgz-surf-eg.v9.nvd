@@ -1,6 +1,6 @@
 {
   "version": 9,
-  "created": "2026-09-14T20:33:35.131392+00:00",
+  "created": "2026-09-14T20:42:36.793995+00:00",
   "scene": {
     "azimuth": 110,
     "elevation": 10,
@@ -38,13 +38,13 @@
       "url": "https://niivue.com/demos/images/fs/brainmask.mgz",
       "name": "brainmask.mgz",
       "colormap": "Gray",
-      "opacity": 0.0
+      "opacity": 1.0
     },
     {
       "url": "https://niivue.com/demos/images/fs/wm.mgz",
       "name": "wm.mgz",
-      "colormap": "Copper",
-      "opacity": 0.0
+      "colormap": "Freesurfer",
+      "opacity": 0.7
     }
   ],
   "meshes": [
